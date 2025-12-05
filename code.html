@@ -1,0 +1,95 @@
+<html>
+<head>
+<title> How long ? </title>
+    
+<script>
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("sw.js")
+    .then(() => console.log("Service Worker enregistré !"))
+    .catch(err => console.error("Erreur SW:", err));
+}
+</script>
+    
+</head>
+<style>
+    body {
+        background-color: aquamarine;
+        font-family: monospace;
+        text-align: center;
+            font-size: 17px;
+    } 
+    h2{
+    font-size: 45px;
+    text-decoration: underline;
+        margin-top:25px ;
+        padding: 20px ;
+    }
+    input{
+        
+        padding: 15px 70px;
+    }
+    button:hover{
+        background-color: greenyellow;
+        color: green;
+    }
+    button {
+        padding: 10px 40px;
+        border-radius: 10px;
+        background-color: aqua ;
+    }
+    div {
+        padding 40px 100px;
+        margin-top: 15px ;
+        background-color: lightpink;
+        font-size: 30px;
+            
+    }
+</style>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#2196f3">
+    
+<Body>
+<h2> Tu veux savoir dans combien de temps !?? </h2><br>
+
+<br> <br>
+    Entre la date ci-dessous pour savoir ! <br><br>
+<input type="date" placeholder=" Entre la date " id="Date"><br> <br>
+<button onclick="result()"> Click here bro ! </button>     
+<div id="Result">
+    </div>
+    
+<script>
+ function result(){
+     let date ;
+     let jj ;
+     let today ;
+     let message ;
+     let jour ; 
+     date= document.getElementById("Date").value ; 
+     jj=date;
+     today = new Date() ;
+     today.setTime(0,0,0,0);
+     
+     if (!date){
+         alert(" Tu dois d'abord entrer une date ");
+     }
+     date = new Date(jj);
+     date = date - today;
+     date = date/(1000*60*60*24);
+     date = date - 20425 ;
+     if (date > 0 ) {
+         message = " Il reste "+date+" jour(s) avant le "+jj;
+     } else if ( date == 0){
+         message =" Bravo , c'est aujourd'hui !! ";
+     }else { 
+              message =" Sorry bro, cette date est déjà passée ! Il y a  "+-date+" jour(s)";
+     }
+     jour = date;
+ document.getElementById("Result").innerHTML=message;
+     }    
+    
+</script>
+</Body>
+
+
+</html>
